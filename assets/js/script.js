@@ -18,12 +18,7 @@ function writePassword() {
 
 var generatePassword = function() {
 
-  let passString=""; 
-
-  let caseLower=confirm('Should your password include lowercase letters?');
-  let caseUpper=confirm('Should your password include uppercase letters?')
-  let useNumber=confirm('Should your password include numbers?')
-  let specialChar=confirm('Should your password include special characters?');
+  let passString="";
 
   var lengthPassword = (window.prompt('How many characters will your password be? Passwords require a minimum of 8 and a maximum of 128 characters.'));
   if (lengthPassword === "" || lengthPassword === null || lengthPassword < 8 || lengthPassword > 128) {
@@ -33,6 +28,11 @@ var generatePassword = function() {
   else {
   lengthPassword = Math.round(lengthPassword);
   }
+
+  let caseLower=confirm('Should your password include lowercase letters?');
+  let caseUpper=confirm('Should your password include uppercase letters?')
+  let useNumber=confirm('Should your password include numbers?')
+  let specialChar=confirm('Should your password include special characters?');
 
   if (caseLower == false && caseUpper == false && useNumber == false && specialChar == false) {
     window.alert('Please select at least one option.')
@@ -51,12 +51,13 @@ var generatePassword = function() {
   if (specialChar==true){
     passArray.push(hasSpecial)
   }
-  console.log (passArray);
+  
   for(let i=0;i<lengthPassword;i++){
     let selectedPosition;
     let arrayPosition;
     let randomPosition;
     let selectedChar;
+
         
     selectedPosition= parseInt(Math.floor(Math.random()*passArray.length)); 
     arrayPosition=passArray[selectedPosition];
