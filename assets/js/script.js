@@ -20,7 +20,7 @@ var generatePassword = function() {
 
   let passString="";
 
-  var lengthPassword = parseInt(window.prompt('How many characters will your password be? Passwords require a minimum of 8 and a maximum of 128 characters.'));
+  var lengthPassword = (window.prompt('How many characters will your password be? Passwords require a minimum of 8 and a maximum of 128 characters.'));
   if (lengthPassword === "" || lengthPassword === null || lengthPassword < 8 || lengthPassword > 128) {
   window.alert("You need to provide a valid answer! Please try again.")
   return generatePassword();
@@ -30,7 +30,7 @@ var generatePassword = function() {
   }
 
   let caseLower=confirm('Should your password include lowercase letters?');
-  let caseUpper=confirm('Should your password include uppercase letters?');
+  let caseUpper=confirm('Should your password include uppercase letters?')
   let useNumber=confirm('Should your password include numbers?')
   let specialChar=confirm('Should your password include special characters?');
 
@@ -43,22 +43,31 @@ var generatePassword = function() {
     passArray.push(hasLower);
   }
   if (caseUpper==true){
-    passArray.push(hasUpper);
+    passArray.push(hasUpper) 
   }
   if (useNumber==true){
-    passArray.push(hasNumber);
+    passArray.push(hasNumber)
   }
   if (specialChar==true){
-    passArray.push(hasSpecial);
+    passArray.push(hasSpecial)
+  }
+  
+  for(let i=0;i<lengthPassword;i++){
+    let selectedPosition;
+    let arrayPosition;
+    let randomPosition;
+    let selectedChar;
+
+        
+    selectedPosition= parseInt(Math.floor(Math.random()*passArray.length)); 
+    arrayPosition=passArray[selectedPosition];
+    randomPosition=Math.floor(Math.random()*arrayPosition.length);
+    selectedChar=arrayPosition[randomPosition];
+    
+    passString+=selectedChar;  
   }
 
-  console.log(passArray);
-
-  // let retVal = "";
-  // for(let i=0;i<lengthPassword;i++){
-  //   retVal += passArray.charAt(Math.floor(Math.random() * lengthPassword));
-  // }
-  // return retVal;
+  return passString;
 
 }
 // Add event listener to generate button
