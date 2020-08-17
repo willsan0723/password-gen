@@ -29,37 +29,37 @@ var generatePassword = function() {
   lengthPassword = Math.round(lengthPassword);
   }
 
-  var caseLower=window.confirm('Should your password include lowercase letters?');
-  var caseUpper=window.confirm('Should your password include uppercase letters?');
-  var useNumber=window.confirm('Should your password include numbers?')
-  var specialChar = window.confirm('Should your password include special characters?');
+  let caseLower=confirm('Should your password include lowercase letters?');
+  let caseUpper=confirm('Should your password include uppercase letters?');
+  let useNumber=confirm('Should your password include numbers?')
+  let specialChar=confirm('Should your password include special characters?');
 
   if (caseLower == false && caseUpper == false && useNumber == false && specialChar == false) {
     window.alert('Please select at least one option.')
     return generatePassword();
   }
 
-  if (caseLower){
+  if (caseLower==true){
     passArray.push(hasLower);
   }
-  if (caseUpper){
+  if (caseUpper==true){
     passArray.push(hasUpper);
   }
-  if (hasNumber){
+  if (useNumber==true){
     passArray.push(hasNumber);
   }
-  if (hasSpecial){
+  if (specialChar==true){
     passArray.push(hasSpecial);
   }
-  
-  var length = lengthPassword,
-    charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+~`'",
-    retVal = "";
-  for (var i = 0, n = charset.length; i < length; ++i) {
-    retVal += charset.charAt(Math.floor(Math.random() * n));
-  }
-  return retVal;
-}
 
+  console.log(passArray);
+
+  // let retVal = "";
+  // for(let i=0;i<lengthPassword;i++){
+  //   retVal += passArray.charAt(Math.floor(Math.random() * lengthPassword));
+  // }
+  // return retVal;
+
+}
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
