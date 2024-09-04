@@ -1,6 +1,5 @@
 // Assignment code here
 
-let passArray=[];
 let hasLower=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 let hasUpper=["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","W","X","Y","Z"];
 let hasNumber=["1","2","3","4","5","6","7","8","9","0"];
@@ -17,13 +16,16 @@ function writePassword() {
 }
 
 var generatePassword = function() {
-
+  let passArray=[];
   let passString="";
 
-  var lengthPassword = (window.prompt('How many characters will your password be? Passwords require a minimum of 8 and a maximum of 128 characters.'));
-  if (lengthPassword === "" || lengthPassword === null || lengthPassword < 8 || lengthPassword > 128) {
-  window.alert("You need to provide a valid answer! Please try again.")
-  return generatePassword();
+  var lengthPassword = window.prompt('How many characters will your password be? Passwords require a minimum of 8 and a maximum of 128 characters.');
+  // ensure it's treated as a number
+  lengthPassword = parseInt(lengthPassword);
+
+  if (isNaN(lengthPassword) || lengthPassword < 8 || lengthPassword > 128) {
+    window.alert("You need to provide a valid answer! Please try again.")
+    return generatePassword();
   }
   else {
   lengthPassword = Math.round(lengthPassword);
@@ -53,22 +55,15 @@ var generatePassword = function() {
   }
   
   for(let i=0;i<lengthPassword;i++){
-    let selectedPosition;
-    let arrayPosition;
-    let randomPosition;
-    let selectedChar;
-
-        
-    selectedPosition= parseInt(Math.floor(Math.random()*passArray.length)); 
-    arrayPosition=passArray[selectedPosition];
-    randomPosition=Math.floor(Math.random()*arrayPosition.length);
-    selectedChar=arrayPosition[randomPosition];
+    let selectedPosition = parseInt(Math.floor(Math.random()*passArray.length));
+    let arrayPosition = passArray[selectedPosition];
+    let randomPosition = Math.floor(Math.random()*arrayPosition.length);
+    let selectedChar = arrayPosition[randomPosition];
     
-    passString+=selectedChar;  
+    passString += selectedChar;
   }
 
   return passString;
-
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
